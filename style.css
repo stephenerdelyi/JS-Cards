@@ -1,0 +1,70 @@
+body {
+  background-image: url("bg.jpg");
+  background-size: cover;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+body form {
+  text-align: center;
+  margin: 30px 0px;
+}
+body form button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  line-height: 1;
+}
+body form button:focus {
+  outline: none;
+}
+body form button:hover {
+  background-color: #efefef;
+  cursor: pointer;
+}
+body form button i.material-icons {
+  font-size: 15px;
+}
+body .card-container {
+  overflow: auto;
+  max-width: 600px;
+  margin: 15vh auto 0 auto;
+}
+body .card-container .card-back, body .card-container .card-front {
+  width: 50%;
+  float: left;
+  padding: 10px;
+  box-sizing: border-box;
+}
+body .card-container .card-back img {
+  border-radius: 20px;
+  width: 100%;
+}
+body .card-container .card-front #card-top {
+  background-color: white;
+  border-radius: 20px;
+  height: 392px;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  opacity: 0;
+}
+body .card-container .card-front #card-top.red {
+  color: #e24235;
+}
+body .card-container .card-front #card-top p.value {
+  font-size: 240px;
+  line-height: 0;
+  margin-top: 140px;
+  margin-bottom: 140px;
+}
+body .card-container .card-front #card-top img {
+  width: 40px;
+}
+body .swal-modal.simple-success {
+  width: 300px;
+}
+body .swal-modal.simple-success .swal-title {
+  margin-bottom: 45px;
+}
+
+/*# sourceMappingURL=style.css.map */

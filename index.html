@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <title>Deck of Cards</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+    <form>
+      <button id="create"><i class="material-icons">replay</i> Create Deck</button>
+      <button id="shuffle"><i class="material-icons">shuffle</i> Shuffle Deck</button>
+      <button id="cut"><i class="material-icons">low_priority</i> Cut Deck</button>
+    </form>
+    <div class="card-container">
+      <div class="card-back">
+        <img id="front-card" src="red.png"/>
+      </div>
+      <div class="card-front">
+        <div id="card-top">
+          <p class="value"></p>
+          <img src=""/>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="cards.js"></script>
+  <script>
+    var Deck = new deck();
+
+    init();
+
+    function init() {
+      setDeckOpacity();
+    }
+
+    function showMessage(message, type) {
+      swal({
+        title: message,
+        icon: type,
+        timer: 1000,
+        buttons: false,
+        className: "simple-success",
+      });
+    }
+
+    function setTopOpacity(opacity) {
+      document.getElementById("card-top").style.opacity = opacity;
+    }
+
+    function setDeckOpacity() {
+      if(stillHaveCards()) {
+        document.getElementById("front-card").style.opacity = 1;
+      } else {
+        document.getElementById("front-card").style.opacity = .5;
+      }
+    }
+
+    function stillHaveCards() {
+      if(Deck.getNumLeft() == 0) {
+        return false;
+      }
+      return true;
+    }
+
+    function displayCard(card) {
+      setTopOpacity(1);
+      if(card.suit == "heart" || card.suit == "diamond") {
+        document.getElementById("card-top").classList.add("red");
+      } else {
+        document.getElementById("card-top").classList.remove("red");
+      }
+
+      document.getElementById("card-top").children[0].innerText = card.value;
+      document.getElementById("card-top").children[1].setAttribute("src", card.suit + ".png");
+    }
+
+    document.getElementById("front-card").onclick = function(e) {
+      e.preventDefault();
+      if(stillHaveCards()) {
+        displayCard(Deck.deal());
+      } else {
+        showMessage("There are no cards left!", "error");
+      }
+      setDeckOpacity();
+    };
+
+    document.getElementById("create").onclick = function(e) {
+      e.preventDefault();
+      Deck.create();
+      setDeckOpacity();
+      setTopOpacity(0);
+      showMessage("New Deck Created", "success");
+    };
+
+    document.getElementById("shuffle").onclick = function(e) {
+      e.preventDefault();
+      Deck.shuffle();
+      showMessage("Deck Shuffled", "success");
+    };
+
+    document.getElementById("cut").onclick = function(e) {
+      e.preventDefault();
+      Deck.cut();
+      showMessage("Deck Cut", "success");
+    };
+  </script>
+</html>
